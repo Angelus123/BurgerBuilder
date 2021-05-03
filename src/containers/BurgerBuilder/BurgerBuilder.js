@@ -4,7 +4,8 @@ import Burger from '../../components/Burger/Burger'
 import BulgerControls from '../../components/Burger/BurgerControls/BurgerControls'
 import Modal from '../../components/UI/Modal/Modal'
 import OrderSumary from "../../components/Burger/OrderSumary/OrderSumary";
-
+import axios from '../../axios'
+import Spinner from '../../components/UI/Spinner/Spinner'
 const INGREDIENT_PRICES ={
     salad:0.5,
     cheese: 0.4,
@@ -25,7 +26,8 @@ class BuggerBuilder extends Component{
         },
         totalPrice: 4,
         purchasable:false,
-        purchasing:false
+        purchasing:false,
+        loading: false
     }
     updatePurcharseState(ingredients){
      
@@ -73,6 +75,32 @@ class BuggerBuilder extends Component{
     purchaseCancelHandler = () =>{
         this.setState({purchasing:false})
     }
+
+    purchaseContinuingHandler = () =>{
+
+       this.setState({loading: true})
+        const order ={
+            ingredients:this.state.ingredients,
+            price: this.state.totalPrice,
+            customer: {
+                address:{
+                    street:'Teststreet 1',
+                    zipCode:'41351',
+                    country:'Germany'
+                },
+                email: 'test@test.com'
+    
+            },
+            deliveryMethod:'fastest'
+         
+        }
+        axios.post('/orders.json',order)
+        .then( response => {
+            this.setState({loading:false,purchasing:false})
+        })
+    //     .catch( err => alert(err))
+    //     this.setState({loading:false,purchasing:false})
+    }
     render(){
   
         const disabledInfo ={
@@ -84,6 +112,16 @@ class BuggerBuilder extends Component{
             disabledInfo[key]= disabledInfo[key] <=0
           
         }
+        let orderSummary =  <OrderSumary 
+        ingredients={this.state.ingredients} 
+        price={this.state.totalPrice}
+        cancel ={this.purchaseCancelHandler}
+        continue ={this.purchaseContinuingHandler}
+        />
+        if(this.state.loading){
+            orderSummary = <Spinner />
+
+        }
        
         return (
             <Aux>
@@ -91,11 +129,8 @@ class BuggerBuilder extends Component{
                 <Modal 
                     show ={this.state.purchasing} 
                     modalClosed ={this.purchaseCancelHandler}>
-                    <OrderSumary 
-                    ingredients={this.state.ingredients} 
-                    price={this.state.totalPrice}
-                    modalClosed ={this.purchaseCancelHandler}/>
-                    </Modal>
+                    {orderSummary}
+                 </Modal>
                <Burger ingredients={this.state.ingredients} />
               <BulgerControls
               added={this.addIngridientHandler} 
