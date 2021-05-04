@@ -16,16 +16,19 @@ const INGREDIENT_PRICES ={
 class BuggerBuilder extends Component{
   
     state = {
-        ingredients: {
-             salad: 0,
-             bacon: 0,
-             cheese: 0,
-             meat:0
-        },
+        ingredients:null,
         totalPrice: 4,
         purchasable:false,
         purchasing:false,
         loading: false
+    }
+    componentDidMount(){
+        axios.get('https://react-burger-app-c147e-default-rtdb.firebaseio.com/ingredients.json')
+        .then( response => {
+      
+            this.setState({ingredients:response.data})})
+            .catch(err =>err)
+
     }
     updatePurcharseState(ingredients){
      
@@ -40,7 +43,7 @@ class BuggerBuilder extends Component{
         this.setState({purchasable:sum>0})
 
  }
-    addIngridientHandler = (type) => {
+    addIngredientHandler = (type) => {
         const oldCount = this.state.ingredients[type];
         const updatedCount =oldCount + 1;
         const updatedIngredients = {
@@ -54,7 +57,7 @@ class BuggerBuilder extends Component{
         this.updatePurcharseState( updatedIngredients)
     }
 
-    removeIngridientHandler = (type) => {
+    removeIngredientHandler = (type) => {
         const oldCount = this.state.ingredients[type];
             const updatedCount =oldCount - 1;
             const updatedIngredients = {
@@ -75,9 +78,9 @@ class BuggerBuilder extends Component{
     }
 
     purchaseContinuingHandler = () =>{
-
-       this.setState({loading: true})
-        const order ={
+console.log('continuing')
+       this.setState({loading:true})
+         const order ={
             ingredients:this.state.ingredients,
             price: this.state.totalPrice,
             customer: {
@@ -94,6 +97,7 @@ class BuggerBuilder extends Component{
         }
         axios.post('/orders.json',order)
         .then( response => {
+            
             this.setState({loading:false,purchasing:false})
         
         })
@@ -110,15 +114,36 @@ class BuggerBuilder extends Component{
             disabledInfo[key]= disabledInfo[key] <=0
           
         }
-        let orderSummary =  <OrderSumary 
+        let orderSummary =null
+        
+       
+        let burger =<Spinner />
+        console.log(this.state.ingredients)
+        if(this.state.ingredients){
+            burger = (
+                <Aux>
+                    <Burger ingredients={this.state.ingredients} />
+                    <BulgerControls
+                    added={this.addIngredientHandler} 
+                    removed={this.removeIngredientHandler} 
+                    disabled={disabledInfo}
+                    price={this.state.totalPrice}
+                    ordered={this.purchaseHandler}
+                    purchasable={this.state.purchasable}
+                />
+                </Aux>
+          )
+
+          orderSummary =  <OrderSumary 
         ingredients={this.state.ingredients} 
         price={this.state.totalPrice}
         cancel ={this.purchaseCancelHandler}
         continue ={this.purchaseContinuingHandler}
         />
+        }
         if(this.state.loading){
+            console.log('there! i am')
             orderSummary = <Spinner />
-
         }
        
         return (
@@ -129,15 +154,8 @@ class BuggerBuilder extends Component{
                     modalClosed ={this.purchaseCancelHandler}>
                     {orderSummary}
                  </Modal>
-               <Burger ingredients={this.state.ingredients} />
-              <BulgerControls
-              added={this.addIngridientHandler} 
-              removed={this.removeIngridientHandler} 
-              disabled={disabledInfo}
-              price={this.state.totalPrice}
-              ordered={this.purchaseHandler}
-              purchasable={this.state.purchasable}
-             />
+                 {burger}
+              
             </Aux>
         )
     }
