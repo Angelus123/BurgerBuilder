@@ -6,6 +6,7 @@ import Modal from '../../components/UI/Modal/Modal'
 import OrderSumary from "../../components/Burger/OrderSumary/OrderSumary";
 import axios from '../../axios'
 import Spinner from '../../components/UI/Spinner/Spinner'
+import withErrorHandler from '../../hoc/withErrorHAndler/withErrorHandler'
 const INGREDIENT_PRICES ={
     salad:0.5,
     cheese: 0.4,
@@ -13,10 +14,7 @@ const INGREDIENT_PRICES ={
     bacon:0.7
 }
 class BuggerBuilder extends Component{
-    // constructor (props) {
-    //     super(props)
-    //     this.state ={...}
-    // }
+  
     state = {
         ingredients: {
              salad: 0,
@@ -97,9 +95,9 @@ class BuggerBuilder extends Component{
         axios.post('/orders.json',order)
         .then( response => {
             this.setState({loading:false,purchasing:false})
+        
         })
-    //     .catch( err => alert(err))
-    //     this.setState({loading:false,purchasing:false})
+        .catch( err =>this.setState({loading:false,purchasing:false}))
     }
     render(){
   
@@ -144,4 +142,4 @@ class BuggerBuilder extends Component{
         )
     }
 }
-export default BuggerBuilder
+export default withErrorHandler(BuggerBuilder,axios)
