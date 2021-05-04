@@ -18,8 +18,8 @@ class OrderSumary extends Component{
         { ingredientSumary }
        <p><strong>Price: {this.props.price.toFixed(2)}$</strong></p>
        <p>Continue to Checkout</p>
-       <Button btnType='Danger' clicked ={this.props.modalClosed }>CANCEL</Button>
-       <Button btnType='Success'>CONTINUE</Button>
+       <Button btnType='Danger' clicked ={this.props.cancel }>CANCEL</Button>
+       <Button btnType='Success' clicked ={this.props.continue }>CONTINUE</Button>
    </Aux>)
     
   }
