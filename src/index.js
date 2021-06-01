@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './containers/App';
+import { BrowserRouter} from 'react-router-dom'
+import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios'
 axios.defaults.baseURL ='https://jsonplaceholder.typicode.com'
@@ -24,5 +25,11 @@ error => {
     return Promise.reject(error)
 }
 )
-ReactDOM.render( <App />, document.getElementById( 'root' ) );
+
+const app =(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+)
+ReactDOM.render( app, document.getElementById( 'root' ) );
 registerServiceWorker();

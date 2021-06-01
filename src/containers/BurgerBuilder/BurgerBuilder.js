@@ -23,10 +23,12 @@ class BuggerBuilder extends Component{
         loading: false
     }
     componentDidMount(){
+   
         axios.get('https://react-burger-app-c147e-default-rtdb.firebaseio.com/ingredients.json')
         .then( response => {
       
             this.setState({ingredients:response.data})})
+         
             .catch(err =>err)
 
     }
@@ -78,41 +80,27 @@ class BuggerBuilder extends Component{
     }
 
     purchaseContinuingHandler = () =>{
-console.log('continuing')
-       this.setState({loading:true})
-         const order ={
-            ingredients:this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                address:{
-                    street:'Teststreet 1',
-                    zipCode:'41351',
-                    country:'Germany'
-                },
-                email: 'test@test.com'
     
-            },
-            deliveryMethod:'fastest'
-         
+        const queryParams= []
+        for (let i in this.state.ingredients){
+            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]))
         }
-        axios.post('/orders.json',order)
-        .then( response => {
-            
-            this.setState({loading:false,purchasing:false})
+        queryParams.push('price=' +this.state.totalPrice)
+        const queryString =queryParams.join ( '&' )
         
-        })
-        .catch( err =>this.setState({loading:false,purchasing:false}))
+        this.props.history.push(
+           { pathname: '/checkout',
+           search:'?'+  queryString
+        }
+        )
     }
     render(){
-  
+           console.log(this.state.ingredients)
         const disabledInfo ={
             ...this.state.ingredients
         }
-       
         for(let key in disabledInfo){
-     
-            disabledInfo[key]= disabledInfo[key] <=0
-          
+            disabledInfo[key]= disabledInfo[key] <=0 
         }
         let orderSummary =null
         
