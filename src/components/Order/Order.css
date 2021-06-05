@@ -1,13 +1,36 @@
+div {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.ig{
+  
+    text-transform: capitalize ;
+    display: block;
+    margin: 0 8px;
+    border: 1px solid rgb(53, 49, 49);
+    padding: 5px;
+                   
+               
+}
+
 .Order {
-    width:80%;
+    width:90%;
     border: 1px solid #eee;
     box-shadow:0 2px 3px #ccc;
     padding:10px;
     margin:10px auto;
     box-sizing:border-box;
+    background-color: rgb(204, 253, 204);
 }
-@media  (max-width:600px){
-    .Order{
-        width:100%
+@media (min-width:600px){
+    .ig{
+    
+    display: inline-block;
     }
+    .Order{
+      
+        width:600px;
+    
+    }
+    
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter} from 'react-router-dom'
-import App from './App';
+import App from './Auth/UserAuth';
 import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios'
 axios.defaults.baseURL ='https://jsonplaceholder.typicode.com'
@@ -27,9 +27,13 @@ error => {
 )
 
 const app =(
-    <BrowserRouter>
+
+         <BrowserRouter>
         <App />
     </BrowserRouter>
+  
+   
+    
 )
 ReactDOM.render( app, document.getElementById( 'root' ) );
-registerServiceWorker();
+registerServiceWorker()
