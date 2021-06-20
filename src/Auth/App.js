@@ -3,7 +3,6 @@ import Todos from '../components/Todos';
 import AddTodo from '../components/AddTodo';
 import Header from '../components/layout/Header';
 import About from '../components/pages/About';
-// import app from "./components/Authentication/base";
 import uuid from 'react-uuid';
 import UserAuth from './UserAuth';
 import { BrowserRouter as Router,Route} from 'react-router-dom'
@@ -38,7 +37,7 @@ markComplete = (id) => {
     this.setState({todos: this.state.todos.map(todo => {
         if(todo.id === id){
             todo.completed=!todo.completed
-            // todo.title="felix"
+         
         }
         return todo;
     }) })
