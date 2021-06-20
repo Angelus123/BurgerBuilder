@@ -1,6 +1,6 @@
 # Bugger Builder
 This App help people to create and order Bugger 
-
+![Bugger Homepage](https://github.com/Angelus123/BurgerBuilder/blob/Developer/src/assets/homepage/Screenshot_burger.png)
 ## Authentication
 Firebase
 
