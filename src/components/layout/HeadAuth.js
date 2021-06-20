@@ -23,16 +23,7 @@ const headerStyle = {
    
 }
 
-const headerStyle1 = {
-    height: "50%",
-    width:'100%',
-    background: '#fff',
-    color: '#079',
-    textAlign: 'right',
-   
-   
-  
-}
+
 const linkStyle = {
     
     padding:'0px 5px 0px 5px',

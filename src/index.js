@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter} from 'react-router-dom'
 import App from './Auth/UserAuth';
-import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios'
 axios.defaults.baseURL ='https://jsonplaceholder.typicode.com'
 axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN'
@@ -36,4 +35,3 @@ const app =(
     
 )
 ReactDOM.render( app, document.getElementById( 'root' ) );
-registerServiceWorker()
