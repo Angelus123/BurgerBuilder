@@ -9,12 +9,11 @@
     padding: 10px 0
 }
 .Price{
-    width:auto;
-    background-color:#755c08;
+    width:auto;  
     display: flex;
     flex-flow: column;
     align-items: center;
-    box-shadow: 0 15px 10px rgb(49, 41, 41);
+    box-shadow: 0 10px 10px rgba(53, 45, 45, 0.705);
     margin: auto;
     font-size:26px;
 }
