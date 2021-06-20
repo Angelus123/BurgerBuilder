@@ -3,55 +3,28 @@ This App help people to create and order Bugger
 
 ## Authentication
 Firebase
-## Include Environment folder (config/config.env)
-
-PORT=3000
-NODE_ENV=development
-DATABASE1=mongodb atlas path or localhost
-## Tour API
-* POST /api/v1/tour
-* GET /api/v1/tour
-* DELETE /api/v1/tour/:id
-* PATCH /api/v1/tour/:id
-
-## Review on tour and comment on article API
-* POST /api/v1/comment
-* GET /api/v1/review
-
-## Article API
-* POST /api/v1/article
-* GET /api/v1/article
-* GET /api/v1/article/:id
-* DELETE /api/v1/article/:id
-* PATCH /api/v1/article/:id
-
 
 ### Technology tools used in this Project
 
-* Server side Framework : **Node/Express**
+* Server side Framework : **React.js, Firebase **
 * Linting Library: **ESLint**
-* Database: **Mongodb**
+* Database: **Realtimedatabase and Firestore**
 
 ### Additional Tools
 
 * JavaScript Es6 with Babel compiler
 
 
-### Here there is important link you may visit
-
-* For a better test you will need to use [POSTMAN](https://www.getpostman.com/)
-
 ### Setup project locally
 
 * Install [git](https://git-scm.com/downloads)
 * Install [Node js](https://nodejs.org/en/)
-* Install [MongoDB] or use MongoDB atlas
-* Clone Repo [TripManager](https://github.com/Angelus123/TripManager)
+* Clone Repo [BuggerBuilder](https://github.com/Angelus123/BurgerBuilder)
 
 ```
 $ To move into folder
 ```
-$ cd TripManager
+$ cd BuggerBuilder
 ```
 Install dependincies as they appear in package.json file by
 
@@ -61,13 +34,10 @@ $ npm install
 To start the server do
 
 ```
-$ npm run dev-start
+$ npm run start
 ```
-To run the doc do
+![Home page](https://github.com/Akagera-Rhein/Aupair/blob/Developer/src/assets/ReadMeScreenShoot/Screenshot_Center.jpg)
 
-```
-
-$ npm run doc
-
+###Contact me for More  +250785182823 or Email: izerefaifelix@gmail.com
 ### Author
 [IZERE Ange Felix](https://github.com/Angelus123)
