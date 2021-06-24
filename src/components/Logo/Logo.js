@@ -5,7 +5,7 @@ import './Logo.css'
 const logo = (props) => (
 
     
-    <Link to="/posts"><div className= 'Logo' style={{height:props.height}}><img src ={burgerLog} alt ="MyBurger" />
+    <Link to="/"><div className= 'Logo' style={{height:props.height}}><img src ={burgerLog} alt ="MyBurger" />
 </div></Link>
 )
 export default logo
