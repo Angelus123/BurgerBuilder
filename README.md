@@ -21,7 +21,6 @@ Firebase
 * Install [Node js](https://nodejs.org/en/)
 * Clone Repo [BuggerBuilder](https://github.com/Angelus123/BurgerBuilder)
 
-```
 $ To move into folder
 ```
 $ cd BuggerBuilder
